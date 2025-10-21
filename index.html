@@ -417,6 +417,33 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 });
+  
+// ==== 侧边栏锚点恢复功能 ====
+const anchors = document.querySelectorAll('.masthead__menu-item a[href^="/#"]');
+anchors.forEach(link => {
+    link.addEventListener('click', function(e){
+        e.preventDefault();
+        const targetId = this.getAttribute('href').replace('/#','');
+        const targetEl = document.getElementById(targetId);
+        if(!targetEl) return;
+
+        // 恢复主页所有模块
+        if (mainContent) {
+            Array.from(mainContent.children).forEach(el => el.style.display = '');
+        }
+
+        // 隐藏 full-list
+        if (full) full.style.display = 'none';
+
+        // 确保 sidebar 显示
+        if (sidebar) sidebar.style.display = '';
+
+        // 滚动到目标元素
+        targetEl.scrollIntoView({behavior:"smooth"});
+    });
+});
+
+  
 </script>
 
 
