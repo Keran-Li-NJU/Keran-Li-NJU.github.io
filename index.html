@@ -25,7 +25,7 @@
 
 
 
-  <meta property="og:description" content="Welcome to Keran Li‘s Homepage.">
+  <meta property="og:description" content="Welcome to Keran Li's Homepage.">
 
 
 
@@ -100,21 +100,21 @@
       <nav id="site-nav" class="greedy-nav">
         <button><div class="navicon"></div></button>
         <ul class="visible-links">
-          <li class="masthead__menu-item masthead__menu-item--lg masthead__menu-home-item"><a href="#about-me">Homepage</a></li>
+          <li class="masthead__menu-item masthead__menu-item--lg masthead__menu-home-item"><a href="/#about-me">Homepage</a></li>
           
-            <li class="masthead__menu-item"><a href="#about-me">About Me</a></li>
+            <li class="masthead__menu-item"><a href="/#about-me">About Me</a></li>
           
-            <li class="masthead__menu-item"><a href="#-news">News</a></li>
+            <li class="masthead__menu-item"><a href="/#-news">News</a></li>
           
-            <li class="masthead__menu-item"><a href="#-publications">Publications</a></li>
+            <li class="masthead__menu-item"><a href="/#-publications">Publications</a></li>
 
-            <li class="masthead__menu-item"><a href="#-projects">Projects</a></li>
+            <li class="masthead__menu-item"><a href="/#-projects">Projects</a></li>
           
-            <li class="masthead__menu-item"><a href="#-honors-and-awards">Honors and Awards</a></li>
+            <li class="masthead__menu-item"><a href="/#-honors-and-awards">Honors and Awards</a></li>
           
-            <li class="masthead__menu-item"><a href="#-education">Education</a></li>
+            <li class="masthead__menu-item"><a href="/#-education">Education</a></li>
 
-            <li class="masthead__menu-item"><a href="#-services">Services</a></li>
+            <li class="masthead__menu-item"><a href="/#-services">Services</a></li>
 
             <li class="masthead__menu-item"><a href="assets/files/PDF/CV.pdf">CV <i class="fa fa-file-pdf" style="color:#969593;"></i></a></li>
 
@@ -354,82 +354,92 @@ document.addEventListener("DOMContentLoaded", function() {
     const partial = document.getElementById('partial-list');
     const full = document.getElementById('full-list');
     const mainContent = document.querySelector('.page__content');
-    const sidebar = document.querySelector('.sidebar, .page__sidebar'); // 兼容不同主题类名
 
-    // ==== Full List 功能 ====
     if (btn) {
         btn.addEventListener('click', function(e) {
             e.preventDefault();
 
-            // 隐藏部分列表，显示完整列表
+            // 隐藏部分列表
             if (partial) partial.style.display = 'none';
+            // 显示完整列表
             if (full) full.style.display = 'block';
 
-            // 隐藏 Publications 外的其他模块，但保留 sidebar
+            // 隐藏 Publications 外的其他模块
             if (mainContent) {
                 Array.from(mainContent.children).forEach(el => {
                     if (
                         el.id !== '-publications' &&
                         el.id !== 'partial-list' &&
-                        el.id !== 'full-list'
+                        el.id !== 'full-list' &&
+                        !el.querySelector('#-publications') &&
+                        !el.querySelector('#full-list')
                     ) {
                         el.style.display = 'none';
                     }
                 });
             }
-
-            // 确保侧边栏显示
-            if (sidebar) sidebar.style.display = '';
         });
     }
 
-    // ==== Back to Homepage 功能 ====
     if (backBtn) {
         backBtn.addEventListener('click', function(e) {
             e.preventDefault();
 
-            // 恢复部分列表，隐藏完整列表
+            // 恢复部分列表
             if (partial) partial.style.display = 'block';
+            // 隐藏完整列表
             if (full) full.style.display = 'none';
 
-            // 显示主页其他模块
+            // 重新显示 Publications 外的其他模块
             if (mainContent) {
-                Array.from(mainContent.children).forEach(el => el.style.display = '');
+                Array.from(mainContent.children).forEach(el => {
+                    if (
+                        el.id !== '-publications' &&
+                        el.id !== 'partial-list' &&
+                        el.id !== 'full-list' &&
+                        !el.querySelector('#-publications') &&
+                        !el.querySelector('#full-list')
+                    ) {
+                        el.style.display = '';
+                    }
+                });
             }
 
-            // 确保侧边栏显示
-            if (sidebar) sidebar.style.display = '';
-
-            // 平滑滚动回顶部
+            // 平滑滚动回顶部（可选）
             window.scrollTo({ top: 0, behavior: "smooth" });
         });
     }
 
-    // ==== 侧边栏锚点恢复功能 ====
-    const anchors = document.querySelectorAll('.masthead__menu-item a[href^="#"]');
-    anchors.forEach(link => {
-        link.addEventListener('click', function(e) {
-            e.preventDefault();
+    // ==== 侧边栏点击跳到 About Me（Full List 打开时） ====
+const anchors = document.querySelectorAll('.masthead__menu-item a[href^="/#"], .masthead__menu-item a[href^="#"]');
+anchors.forEach(link => {
+    link.addEventListener('click', function(e) {
+        e.preventDefault();
 
-            const targetId = this.getAttribute('href').replace('#', '');
-            const targetEl = document.getElementById(targetId);
-            if (!targetEl) return;
-
-            // 显示主页所有模块
-            if (mainContent) {
-                Array.from(mainContent.children).forEach(el => el.style.display = '');
-            }
-
-            // 隐藏 full-list
+        // 恢复部分列表
+            if (partial) partial.style.display = 'block';
+            // 隐藏完整列表
             if (full) full.style.display = 'none';
 
-            // 确保侧边栏显示
-            if (sidebar) sidebar.style.display = '';
+            // 重新显示 Publications 外的其他模块
+            if (mainContent) {
+                Array.from(mainContent.children).forEach(el => {
+                    if (
+                        el.id !== '-publications' &&
+                        el.id !== 'partial-list' &&
+                        el.id !== 'full-list' &&
+                        !el.querySelector('#-publications') &&
+                        !el.querySelector('#full-list')
+                    ) {
+                        el.style.display = '';
+                    }
+                });
+            }
 
-            // 平滑滚动到目标元素
-            targetEl.scrollIntoView({ behavior: "smooth"});
-        });
+            // 平滑滚动回顶部（可选）
+            window.scrollTo({ top: 0, behavior: "smooth" });
     });
+});
 });
 </script>
 
