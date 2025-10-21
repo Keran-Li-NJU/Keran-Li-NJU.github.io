@@ -356,13 +356,13 @@ document.addEventListener("DOMContentLoaded", function() {
     const mainContent = document.querySelector('.page__content');
     const sidebar = document.querySelector('.sidebar, .page__sidebar'); // 兼容不同主题类名
 
+    // ==== Full List 功能 ====
     if (btn) {
         btn.addEventListener('click', function(e) {
             e.preventDefault();
 
-            // 隐藏部分列表
+            // 隐藏部分列表，显示完整列表
             if (partial) partial.style.display = 'none';
-            // 显示完整列表
             if (full) full.style.display = 'block';
 
             // 隐藏 Publications 外的其他模块，但保留 sidebar
@@ -371,79 +371,66 @@ document.addEventListener("DOMContentLoaded", function() {
                     if (
                         el.id !== '-publications' &&
                         el.id !== 'partial-list' &&
-                        el.id !== 'full-list' &&
-                        !el.querySelector('#-publications') &&
-                        !el.querySelector('#full-list')
+                        el.id !== 'full-list'
                     ) {
                         el.style.display = 'none';
                     }
                 });
             }
 
-            // 确保侧边栏保留（不受影响）
+            // 确保侧边栏显示
             if (sidebar) sidebar.style.display = '';
         });
     }
 
+    // ==== Back to Homepage 功能 ====
     if (backBtn) {
         backBtn.addEventListener('click', function(e) {
             e.preventDefault();
 
-            // 恢复部分列表
+            // 恢复部分列表，隐藏完整列表
             if (partial) partial.style.display = 'block';
-            // 隐藏完整列表
             if (full) full.style.display = 'none';
 
-            // 重新显示 Publications 外的其他模块
+            // 显示主页其他模块
             if (mainContent) {
-                Array.from(mainContent.children).forEach(el => {
-                    if (
-                        el.id !== '-publications' &&
-                        el.id !== 'partial-list' &&
-                        el.id !== 'full-list' &&
-                        !el.querySelector('#-publications') &&
-                        !el.querySelector('#full-list')
-                    ) {
-                        el.style.display = '';
-                    }
-                });
+                Array.from(mainContent.children).forEach(el => el.style.display = '');
             }
 
             // 确保侧边栏显示
             if (sidebar) sidebar.style.display = '';
 
-            // 平滑滚动回顶部（可选）
+            // 平滑滚动回顶部
             window.scrollTo({ top: 0, behavior: "smooth" });
         });
     }
-});
-  
-// ==== 侧边栏锚点恢复功能 ====
-const anchors = document.querySelectorAll('.masthead__menu-item a[href^="/#"]');
-anchors.forEach(link => {
-    link.addEventListener('click', function(e){
-        e.preventDefault();
-        const targetId = this.getAttribute('href').replace('/#','');
-        const targetEl = document.getElementById(targetId);
-        if(!targetEl) return;
 
-        // 恢复主页所有模块
-        if (mainContent) {
-            Array.from(mainContent.children).forEach(el => el.style.display = '');
-        }
+    // ==== 侧边栏锚点恢复功能 ====
+    const anchors = document.querySelectorAll('.masthead__menu-item a[href^="/#"]');
+    anchors.forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
 
-        // 隐藏 full-list
-        if (full) full.style.display = 'none';
+            const targetId = this.getAttribute('href').replace('/#', '');
+            const targetEl = document.getElementById(targetId);
+            if (!targetEl) return;
 
-        // 确保 sidebar 显示
-        if (sidebar) sidebar.style.display = '';
+            // 显示主页所有模块
+            if (mainContent) {
+                Array.from(mainContent.children).forEach(el => el.style.display = '');
+            }
 
-        // 滚动到目标元素
-        targetEl.scrollIntoView({behavior:"smooth"});
+            // 隐藏 full-list
+            if (full) full.style.display = 'none';
+
+            // 确保侧边栏显示
+            if (sidebar) sidebar.style.display = '';
+
+            // 平滑滚动到目标元素
+            targetEl.scrollIntoView({ behavior: "smooth" });
+        });
     });
 });
-
-  
 </script>
 
 
