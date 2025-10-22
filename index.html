@@ -51,12 +51,14 @@
 <!-- For all browsers -->
 <link rel="stylesheet" href="assets/css/main.css">
 
-<!-- <style>
+<!-- <head>
+<style>
     .sidebar.sticky {
-      position: fixed;
+      position: sticky;
+      /* top: 0; 与侧边栏对齐 */
     }
-</style> -->
-
+</style>
+</head> -->
 
 
 <meta http-equiv="cleartype" content="on">
@@ -127,10 +129,10 @@
 </div>
 
     <div id="main" role="main">
-      
+
+    <div id="author-section" class="author fixed">
   <div class="sidebar sticky">
   
-
 <div itemscope itemtype="http://schema.org/Person" class="profile_box">
 
   <div class="author__avatar">
@@ -142,12 +144,9 @@
     <p class="author__bio">Nanjing University</p>
   </div>
 
-  <div class="author__urls-wrapper">
-    <!-- <button class="btn btn--inverse">More Info & Contact</button> -->
+  
+    <div class="author__urls-wrapper">
     <ul class="author__urls social-icons">
-      
-        <!-- <li><div style="white-space: normal; margin-bottom: 1em;">Welcome to my homepage!.</div></li> -->
-      
       
         <li><i class="fa fa-fw fa-map-marker" aria-hidden="true"></i> Nanjing, China</li>
       
@@ -155,40 +154,37 @@
         <li><a href="mailto:keranli@smail.nju.edu.cn"><i class="fas fa-fw fa-envelope" aria-hidden="true"></i> Email</a></li>
       
       
-
         <li><a href="" target="_blank"><i class="fas fa-fw fa-graduation-cap"></i> Google Scholar</a></li>
 
-      
-      
-      
-      
-      
     </ul>
       <div class="author__urls_sm">
       
       
         <a href="mailto:keranli@smail.nju.edu.cn"><i class="fas fa-fw fa-envelope" aria-hidden="true"></i></a>
       
-      
-
+    
         <a href="" target="_blank"><i class="fas fa-fw fa-graduation-cap"></i></a>
 
-      
-
     </div>
-  </div>
+
 </div>
+
+</div>
+
+
+
+
 
   
   </div>
+  </div>
 
-    
       <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
         <meta itemprop="headline" content="">
         <div class="page__inner-wrap">
           <section class="page__content" itemprop="text">
             
-<p><span class="anchor" id="about-me"></span></p>
+<!-- <p><span class="anchor" id="about-me"></span></p> -->
 
 <h1 id="-about-me">🎃 About Me</h1>
 <p>I am now a Ph.D. Candidate in School of Computer Science, Nanjing University, supervised by Prof. <a href="https://cs.nju.edu.cn/daihp/index.htm" target="_blank">Haipeng Dai</a> and Prof. <a href="https://cs.nju.edu.cn/ww/" target="_blank">Wei Wang</a>. I received my B.S. degree from Dalian University of Technology in 2022. 
@@ -214,7 +210,7 @@ My research interests include ML for Signal Processing, LLM for Wireless Sensing
   <!-- <h2>🤩 Conference</h2>
   <ul>
     <li>
-      <p><strong>[<font color="#dd0000">TMC</font>] Keran Li</strong>, Haipeng Dai, Wei Wang, Junlong Chen, Jiliang Wang, Shuai Tong, Meng Li, Lei Wang, Haoran Wang and Guihai Chen. 
+      <p><strong>[<font color="#dd0000">TMC'25</font>] Keran Li</strong>, Haipeng Dai, Wei Wang, Junlong Chen, Jiliang Wang, Shuai Tong, Meng Li, Lei Wang, Haoran Wang and Guihai Chen. 
       "RoLEX: A LoRa-based Rotation Speed Measurement System for Ubiquitous Long-distance Monitoring Applications", 
       <strong>IEEE Transactions on Mobile Computing (TMC, <font color="#dd0000">CCF-A</font>)</strong>, 2025. 
       <a href="assets/files/PDF/TMC_RoLEX.pdf" target="_blank">[PDF]</a></p>
@@ -224,7 +220,7 @@ My research interests include ML for Signal Processing, LLM for Wireless Sensing
   <h2>🥳 Journal</h2>
   <ul>
     <li>
-      <p><strong>[<font color="#dd0000">TMC</font>] Keran Li</strong>, Haipeng Dai, Wei Wang, Junlong Chen, Jiliang Wang, Shuai Tong, Meng Li, Lei Wang, Haoran Wang and Guihai Chen. 
+      <p><strong>[<font color="#dd0000">TMC'25</font>] Keran Li</strong>, Haipeng Dai, Wei Wang, Junlong Chen, Jiliang Wang, Shuai Tong, Meng Li, Lei Wang, Haoran Wang and Guihai Chen. 
       "RoLEX: A LoRa-based Rotation Speed Measurement System for Ubiquitous Long-distance Monitoring Applications", <strong>IEEE Transactions on Mobile Computing (TMC, <font color="#dd0000">CCF-A</font>)</strong>, 2025. 
       <a href="assets/files/PDF/TMC_RoLEX.pdf" target="_blank">[PDF]</a></p>
     </li>
@@ -242,7 +238,7 @@ My research interests include ML for Signal Processing, LLM for Wireless Sensing
   <h3>2025</h3>
   <ul>
     <li>
-      <p><strong>[<font color="#dd0000">TMC</font>] Keran Li</strong>, Haipeng Dai, Wei Wang, Junlong Chen, Jiliang Wang, Shuai Tong, Meng Li, Lei Wang, Haoran Wang and Guihai Chen. 
+      <p><strong>[<font color="#dd0000">TMC'25</font>] Keran Li</strong>, Haipeng Dai, Wei Wang, Junlong Chen, Jiliang Wang, Shuai Tong, Meng Li, Lei Wang, Haoran Wang and Guihai Chen. 
       "RoLEX: A LoRa-based Rotation Speed Measurement System for Ubiquitous Long-distance Monitoring Applications", 
       <strong>IEEE Transactions on Mobile Computing (TMC, <font color="#dd0000">CCF-A</font>)</strong>, 2025. 
       <a href="assets/files/PDF/TMC_RoLEX.pdf" target="_blank">[PDF]</a></p>
@@ -253,7 +249,7 @@ My research interests include ML for Signal Processing, LLM for Wireless Sensing
   <h3>2025</h3>
   <ul>
     <li>
-      <p><strong>[<font color="#dd0000">TMC</font>] Keran Li</strong>, Haipeng Dai, Wei Wang, Junlong Chen, Jiliang Wang, Shuai Tong, Meng Li, Lei Wang, Haoran Wang and Guihai Chen. 
+      <p><strong>[<font color="#dd0000">TMC'25</font>] Keran Li</strong>, Haipeng Dai, Wei Wang, Junlong Chen, Jiliang Wang, Shuai Tong, Meng Li, Lei Wang, Haoran Wang and Guihai Chen. 
       "RoLEX: A LoRa-based Rotation Speed Measurement System for Ubiquitous Long-distance Monitoring Applications", <strong>IEEE Transactions on Mobile Computing (TMC, <font color="#dd0000">CCF-A</font>)</strong>, 2025. 
       <a href="assets/files/PDF/TMC_RoLEX.pdf" target="_blank">[PDF]</a></p>
     </li>
@@ -314,6 +310,7 @@ My research interests include ML for Signal Processing, LLM for Wireless Sensing
         </div>
       </article>
     </div>
+
 
     <script src="assets/js/main.min.js"></script>
 
